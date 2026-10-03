@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         PROYECTO = 'corporativo-gitops'
+        TERRAFORM = 'C:\\Users\\santi\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Hashicorp.Terraform_Microsoft.Winget.Source_8wekyb3d8bbwe\\terraform.exe'
     }
 
     stages {
@@ -17,8 +18,8 @@ pipeline {
         stage('Fase 2: Validacion') {
             steps {
                 echo '==> Validando configuracion de Terraform...'
-                bat 'terraform -chdir=terraform init -input=false'
-                bat 'terraform -chdir=terraform validate'
+                bat '"%TERRAFORM%" -chdir=terraform init -input=false'
+                bat '"%TERRAFORM%" -chdir=terraform validate'
                 echo '==> Validacion exitosa'
             }
         }
@@ -34,7 +35,7 @@ pipeline {
         stage('Fase 4: Terraform Apply') {
             steps {
                 echo '==> Aprovisionando infraestructura con Terraform...'
-                bat 'terraform -chdir=terraform apply -auto-approve -input=false'
+                bat '"%TERRAFORM%" -chdir=terraform apply -auto-approve -input=false'
                 echo '==> Infraestructura creada exitosamente'
             }
         }

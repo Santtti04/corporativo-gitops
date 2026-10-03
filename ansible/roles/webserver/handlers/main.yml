@@ -1,0 +1,4 @@
+---
+- name: reiniciar servicio
+  debug:
+    msg: "Servicio reiniciado correctamente"

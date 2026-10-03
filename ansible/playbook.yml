@@ -1,0 +1,7 @@
+---
+- name: Configuracion del Servidor Corporativo
+  hosts: servidores
+  gather_facts: false
+
+  roles:
+    - webserver
